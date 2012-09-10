@@ -43,7 +43,13 @@
 (require 'auto-complete)
 
 (defvar ac-chunk-regex
-  "\\(\\s-\\|\\s(\\|\\s)\\|^\\)\\(\\(\\sw\\|\\s_\\)+\\s.?\\)+\\="
+  (rx (group-n 1 (| (syntax whitespace)
+                    (syntax open-parenthesis)
+                    (syntax close-parenthesis)
+                    bol))
+      (+ (group (+ (| (syntax word) (syntax symbol))
+                   (? (syntax punctuation)))))
+      point)
   "A regexp that matches to a \"chunk\" containing words and dots.")
 
 (defun ac-chunk-beginning ()
