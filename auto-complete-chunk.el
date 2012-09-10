@@ -65,14 +65,11 @@
 
 (defun ac-chunk-candidates-from-list (chunk-list)
   "Return matched candidates in CHUNK-LIST."
-  (let* ((current (point))
-         (start (ac-chunk-beginning))
-         (prefix (if start (buffer-substring start current)))
-         (prefix-len (if start (length prefix)))
-         (chunk-regex (if start (concat "^" prefix))))
+  (let* ((start (ac-chunk-beginning)))
     (when start
-      (loop for cc in chunk-list
-            when (string-match chunk-regex cc)
+      (loop with prefix = (buffer-substring start (point))
+            for cc in chunk-list
+            when (string-prefix-p prefix cc)
             collect cc))))
 
 (defvar ac-chunk-list nil
