@@ -47,8 +47,8 @@
                     (syntax open-parenthesis)
                     (syntax close-parenthesis)
                     bol))
-      (+ (group (+ (| (syntax word) (syntax symbol))
-                   (? (syntax punctuation)))))
+      (+ (+ (| (syntax word) (syntax symbol)))
+         (? (syntax punctuation)))
       point)
   "A regexp that matches to a \"chunk\" containing words and dots.")
 
