@@ -84,7 +84,6 @@
 
 (ac-define-source chunk-list
   '((candidates . ac-chunk-list-candidates)
-    (available . ac-chunk-list)
     (requires . 0)
     (prefix . ac-chunk-beginning)
     (symbol . "c")))
