@@ -58,6 +58,9 @@
 (ac-chunk-regex-deftest ac-chunk-regex/fu/3 fundamental-mode   "a"   "a")
 (ac-chunk-regex-deftest ac-chunk-regex/el/3 emacs-lisp-mode    "a"   "a")
 (ac-chunk-regex-deftest ac-chunk-regex/py/3 python-mode        "a"   "a")
+(ac-chunk-regex-deftest ac-chunk-regex/fu/4 fundamental-mode   "a.." nil)
+(ac-chunk-regex-deftest ac-chunk-regex/el/4 emacs-lisp-mode    "a.." "a..")
+(ac-chunk-regex-deftest ac-chunk-regex/py/4 python-mode        "a.." nil)
 
 ;; (ert "ac-chunk-regex/fu/.*")
 ;; (ert "ac-chunk-regex/.*")
