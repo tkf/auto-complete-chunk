@@ -29,9 +29,12 @@
 ;;; Commentary:
 
 ;; Example usage:
+;;
 ;;    (add-hook
 ;;     'python-mode
 ;;     (lambda ()
+;;       ;; Make sure `ac-source-chunk-list' comes first.
+;;       (setq ac-sources (append '(ac-source-chunk-list) ac-sources))
 ;;       (setq ac-chunk-list
 ;;             '("os.path.abspath" "os.path.altsep" "os.path.basename"))))
 
@@ -105,29 +108,6 @@
   (setq ac-sources (delq 'ac-source-dictionary ac-sources))
   (add-to-list 'ac-sources 'ac-source-dictionary-chunk)
   )
-
-(defadvice ac-common-setup
-  (after ac-common-setup-with-chunk () activate)
-  "To make `ac-source-chunk-list' work, it must be at the top of `ac-sources'.
-
-FIXME: there must be a better way to do it... so, find it out.
-
-Note that `ac-common-setup' is added to `auto-complete-mode-hook'
-by `ac-config-default', thus called at the very end of the
-`ac-sources' setup.
-
-If this advice is active, `ac-source-chunk-list' is functional when
-the variable `ac-chunk-list' is set."
-  (setq ac-sources (delq 'ac-source-chunk-list ac-sources))
-  (setq ac-sources (delq 'ac-source-filename ac-sources))
-  (setq ac-sources (delq 'ac-source-yasnippet ac-sources))
-  ;; make yasnippet has lowest priority
-  (setq ac-sources
-        (append
-         '(ac-source-chunk-list ac-source-filename)
-         ac-sources
-         '(ac-source-yasnippet)
-         )))
 
 (provide 'auto-complete-chunk)
 
