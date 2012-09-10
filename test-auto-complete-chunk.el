@@ -47,6 +47,15 @@
 (ac-chunk-regex-deftest ac-chunk-regex/fu/0 fundamental-mode "\na.b" "a.b")
 (ac-chunk-regex-deftest ac-chunk-regex/el/0 emacs-lisp-mode  "\na.b" "a.b")
 (ac-chunk-regex-deftest ac-chunk-regex/py/0 python-mode      "\na.b" "a.b")
+(ac-chunk-regex-deftest ac-chunk-regex/fu/1 fundamental-mode   "a.b" "a.b")
+(ac-chunk-regex-deftest ac-chunk-regex/el/1 emacs-lisp-mode    "a.b" "a.b")
+(ac-chunk-regex-deftest ac-chunk-regex/py/1 python-mode        "a.b" "a.b")
+(ac-chunk-regex-deftest ac-chunk-regex/fu/2 fundamental-mode   "a."  "a.")
+(ac-chunk-regex-deftest ac-chunk-regex/el/2 emacs-lisp-mode    "a."  "a.")
+(ac-chunk-regex-deftest ac-chunk-regex/py/2 python-mode        "a."  "a.")
+(ac-chunk-regex-deftest ac-chunk-regex/fu/3 fundamental-mode   "a"   "a")
+(ac-chunk-regex-deftest ac-chunk-regex/el/3 emacs-lisp-mode    "a"   "a")
+(ac-chunk-regex-deftest ac-chunk-regex/py/3 python-mode        "a"   "a")
 
 ;; (ert "ac-chunk-regex/fu/.*")
 
