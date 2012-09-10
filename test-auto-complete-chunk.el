@@ -65,6 +65,34 @@
 ;; (ert "ac-chunk-regex/fu/.*")
 ;; (ert "ac-chunk-regex/.*")
 
+(defun ac-chunk-candidates-from-list-assert-match (prefix chunk-list
+                                                          match-list)
+  (with-temp-buffer
+    (erase-buffer)
+    (insert prefix)
+    (should (equal (ac-chunk-candidates-from-list chunk-list)
+                   match-list))))
+
+(ert-deftest ac-chunk-candidates-from-list/match-after-dot ()
+  (ac-chunk-candidates-from-list-assert-match
+   "a."
+   '("a.x" "a.y" "b.x" "b.y")
+   '("a.x" "a.y")))
+
+(ert-deftest ac-chunk-candidates-from-list/match-after-word ()
+  (ac-chunk-candidates-from-list-assert-match
+   "a.x"
+   '("a.xx" "a.xy" "b.xx" "b.xy")
+   '("a.xx" "a.xy")))
+
+(ert-deftest ac-chunk-candidates-from-list/no-match ()
+  (ac-chunk-candidates-from-list-assert-match
+   "c."
+   '("a.x" "a.y" "b.x" "b.y")
+   nil))
+
+;; (ert "ac-chunk-candidates-from-list/.*")
+
 
 (provide 'test-auto-complete-chunk)
 
