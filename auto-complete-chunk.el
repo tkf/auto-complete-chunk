@@ -45,6 +45,9 @@
 
 (require 'auto-complete)
 
+
+;;; Core
+
 (defvar ac-chunk-regex
   (rx (group-n 1 (| (syntax whitespace)
                     (syntax open-parenthesis)
@@ -72,6 +75,9 @@
             when (string-prefix-p prefix cc)
             collect cc))))
 
+
+;;; `ac-source-chunk-list'
+
 (defvar ac-chunk-list nil
   "Dictionary used from `ac-source-chunk-list'.  List of strings.")
 (make-variable-buffer-local 'ac-chunk-list)
@@ -90,6 +96,9 @@
     (prefix . ac-chunk-beginning)
     (symbol . "c")))
 
+
+;;; `ac-source-dictionary-chunk'
+
 (defun ac-dictionary-chunk-candidates ()
   "Create candidates from dictionary (variable `ac-buffer-dictionary')."
   (ac-chunk-candidates-from-list (ac-buffer-dictionary)))
@@ -103,8 +112,7 @@
 (defun ac-use-dictionary-chunk ()
   "Swap `ac-source-dictionary' with `ac-source-dictionary-chunk'."
   (setq ac-sources (delq 'ac-source-dictionary ac-sources))
-  (add-to-list 'ac-sources 'ac-source-dictionary-chunk)
-  )
+  (add-to-list 'ac-sources 'ac-source-dictionary-chunk))
 
 (provide 'auto-complete-chunk)
 
