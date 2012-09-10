@@ -39,7 +39,9 @@
          (insert ,insert)
          (let ((beg (ac-chunk-beginning)))
            (if ,prefix
-               (should (equal (buffer-substring beg (point)) ,prefix))
+               (progn
+                 (should (numberp beg))
+                 (should (equal (buffer-substring beg (point)) ,prefix)))
              (should-not beg)))
          ;; To make sure buffer local variables are removed.
          (kill-buffer buffer)))))
@@ -58,6 +60,7 @@
 (ac-chunk-regex-deftest ac-chunk-regex/py/3 python-mode        "a"   "a")
 
 ;; (ert "ac-chunk-regex/fu/.*")
+;; (ert "ac-chunk-regex/.*")
 
 
 (provide 'test-auto-complete-chunk)

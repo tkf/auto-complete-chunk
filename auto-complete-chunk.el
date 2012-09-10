@@ -43,14 +43,14 @@
 (require 'auto-complete)
 
 (defvar ac-chunk-regex
-  "\\(\\s \\|\\s(\\|\\s)\\|\n\\)\\(\\sw\\|\\s_\\)+\\(\\s.\\(\\sw\\|\\s_\\)+\\)*\\="
+  "\\(\\s-\\|\\s(\\|\\s)\\|^\\)\\(\\(\\sw\\|\\s_\\)+\\s.?\\)+\\="
   "A regexp that matches to a \"chunk\" containing words and dots.")
 
 (defun ac-chunk-beginning ()
   "Return the position where the chunk begins."
   (ignore-errors
     (save-excursion
-      (+ (re-search-backward ac-chunk-regex) 1))))
+      (+ (re-search-backward ac-chunk-regex) (length (match-string 1))))))
 
 (defun ac-chunk-candidates-from-list (chunk-list)
   "Return matched candidates in CHUNK-LIST."
