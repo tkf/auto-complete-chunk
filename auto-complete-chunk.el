@@ -49,10 +49,10 @@
 ;;; Core
 
 (defvar ac-chunk-regex
-  (rx (group-n 1 (| (syntax whitespace)
-                    (syntax open-parenthesis)
-                    (syntax close-parenthesis)
-                    bol))
+  (rx (group (| (syntax whitespace)
+                (syntax open-parenthesis)
+                (syntax close-parenthesis)
+                bol))
       (* (+ (| (syntax word) (syntax symbol)))
          (syntax punctuation))
       (+ (| (syntax word) (syntax symbol)))
