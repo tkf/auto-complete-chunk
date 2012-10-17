@@ -92,7 +92,6 @@
 
 (ac-define-source chunk-list
   '((candidates . ac-chunk-list-candidates)
-    (requires . 0)
     (prefix . ac-chunk-beginning)
     (symbol . "c")))
 
@@ -105,7 +104,6 @@
 
 (ac-define-source dictionary-chunk
   '((candidates . ac-dictionary-chunk-candidates)
-    (requires . 0)
     (prefix . ac-chunk-beginning)
     (symbol . "c")))
 
